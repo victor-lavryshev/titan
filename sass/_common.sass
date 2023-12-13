@@ -34,6 +34,17 @@ body
 	padding: 0 20px
 	margin: 0 auto
 
+@-webkit-keyframes shine
+
+	0%
+		left: -100%
+
+	50%
+		left: 0
+  
+	100%
+		left: -100%
+
 @keyframes shine
 
 	0%
@@ -44,6 +55,26 @@ body
   
 	100%
 		left: -100%
+
+@-webkit-keyframes runleft
+
+	from
+		-webkit-transform: translateX(0)
+		transform: translateX(0)
+
+	to
+		-webkit-transform: translateX(-100%)
+		transform: translateX(-100%)
+
+@keyframes runleft 
+
+	from
+		-webkit-transform: translateX(0)
+		transform: translateX(0)
+
+	to
+		-webkit-transform: translateX(-100%)
+		transform: translateX(-100%)
 
 .btn
 	display: inline-block
@@ -1765,10 +1796,50 @@ form
 			margin-left: auto
 			margin-right: auto
 
+.run
+	overflow: hidden
+
+	.run__track
+		display: flex
+		overflow: hidden
+		user-select: none
+
+	.run__slide
+		flex-shrink: 0
+		display: flex
+		justify-content: space-around
+		min-width: 100%
+		
+		p
+			flex: 0 0 auto
+
+.run-left
+
+	.run__slide
+		animation: runleft 40s linear infinite
+
+.run-right
+
+	.run__slide
+		animation: runleft reverse 40s linear infinite
+
 .free
-	background: url(../img/free.png) center no-repeat
-	background-size: cover
+	background: #262626
 	padding: 130px 0
+	position: relative
+	z-index: 1
+	overflow: hidden
+
+	.free__run
+		position: absolute
+		z-index: -1
+		left: 0
+		top: 0
+		right: 0
+		height: 100%
+		display: flex
+		justify-content: center
+		flex-direction: column
 	
 	.free__list
 		display: flex
@@ -1794,6 +1865,13 @@ form
 		display: flex
 		align-items: center
 		justify-content: center
+
+	.run
+
+		.run__slide
+
+			p
+				padding: 0 24px
 
 .inspections
 	overflow: hidden
@@ -2151,12 +2229,20 @@ form
 	background: #262626
 	padding: 64px 0
 	color: #fff
+	overflow: hidden
 
 	.footer__top
 		font-size: 0
 
 		img
 			width: 100%
+
+	.run
+
+		.run__slide
+
+			p
+				padding: 0 100px
 
 	.footer__middle
 		display: flex
@@ -2622,15 +2708,6 @@ form
 				height: 24px
 				border-radius: 50%
 				+icon("check.svg")
-
-
-
-
-
-
-
-
-
 
 +max-screen(1447)
 
@@ -5038,6 +5115,13 @@ form
 
 			& + .free__item
 				margin-top: 16px
+
+		.free__run
+			
+			.run
+
+				& + .run
+					margin-top: 70px
 
 	.inspections
 
